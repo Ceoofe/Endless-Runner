@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody playerRB;
+    private Rigidbody2D playerRb;
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody>();
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Space key was pressed");
-            playerRB.AddForce(Vector3.up * 100, ForceMode.Impulse);
+            playerRb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
         }
     }
 }
