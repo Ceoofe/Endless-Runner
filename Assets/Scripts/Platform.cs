@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
+    public float speedForce;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,10 @@ public class Platform : MonoBehaviour
     void Update()
     {
         //Move Platform to the left
-        transform.Translate(Vector2.left * Time.deltaTime * 5);
+        transform.Translate(Vector2.left * Time.deltaTime * speedForce);
+        if(transform.position.x < -15.5f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
