@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
-    public float jumpForce;
+    [SerializeField] float jumpForce;
+    bool canJump;
     
     // Start is called before the first frame update
     void Start()
@@ -16,10 +17,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && canJump == true)
         {
             Debug.Log("Space key was pressed");
             playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            canJump = false;
+        }
+    }
+    
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            canJump =  true;
         }
     }
 }
